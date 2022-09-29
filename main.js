@@ -8,17 +8,35 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    // this.info = function() {
-    //     return (title + " " + author + ", " + pages + read)
-    // }
+}
+
+//function to display Library array to cards
+function displayBooksOnPage() {
+    const books = document.querySelector(".books");
+
+    //loop over library array and display cards
+    myLibrary.forEach(myLibrary => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        books.appendChild(card);
+        for (let key in myLibrary) {
+            const para = document.createElement("p");
+            para.textContent = ( `${key}: ${myLibrary[key]}`);
+            card.appendChild(para);
+        }
+    })
 }
 
 // function for adding book to array
 
-function addBooktoLibrary() {
+function addBooktoLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
 
-const theHobbit = new Book("The Hobbit", "by J.R.R. Tolkien", "295 pages", " not read yet")
-console.log(theHobbit.info());
+addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
+addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
+addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
+addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
+
+displayBooksOnPage();
