@@ -74,13 +74,6 @@ function intakeFormData() {
 
 }   
 
-// Start event listener for clear form button 
-const clearButton = document.querySelector(".reset-button");
-clearButton.addEventListener("click", clearForm);
-
-function clearForm(){
-    document.getElementById("reset-button")
-}
 
 //addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
 //addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
