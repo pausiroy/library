@@ -26,17 +26,23 @@ function displayBooksOnPage() {
         }
     })
 }
+// Start event listener/display form to add a new book to library
+const addBookButton = document.querySelector("add-book-button");
+addBookButton.addEventListener("click", displayTheForm);
+
+function displayTheForm() {
+    document.getElementById("add-book-form").style.display = "";
+}
 
 // function for adding book to array
 
 function addBooktoLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
+    displayBooksOnPage();
 }
 
-addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
-addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
-addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
-addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
-
-displayBooksOnPage();
+//addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
+//addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
+//addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
+//addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
