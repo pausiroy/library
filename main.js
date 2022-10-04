@@ -2,12 +2,15 @@
 
 let myLibrary = [];
 
-// Object Constructor
-function Book(Title, Author, Pages, Read) {
+// Class Object
+class Book {
+   constructor (Title, Author, Pages, Read){
     this.Title = Title;
     this.Author = Author;
     this.Pages = Pages;
     this.Read = Read;
+   } 
+    
 }
 
 // function for adding book to array
@@ -23,24 +26,50 @@ function addBooktoLibrary(Title, Author, Pages, Read) {
 function displayBooksOnPage() {
     const books = document.querySelector(".books");
 
-    //Remove all previously displayed cards before I loop over array
+    //Remove all previously displayed DOM cards
     const removeDivs = document.querySelectorAll(".card");
-    for(let i = 0; i < removeDivs.length; i++) {
+    for (let i = 0; i < removeDivs.length; i++) {
         removeDivs[i].remove();
     }
 
     //loop over library array and display cards
-    myLibrary.forEach(myLibrary => {
+    let index = 0;
+    myLibrary.forEach(myLibrarys => {
         const card = document.createElement("div");
         card.classList.add("card");
         books.appendChild(card);
-        for (let key in myLibrary) {
+
+        //Create remove book button and add class attribute for each array
+        const removeBookButton = document.createElement("button");
+        removeBookButton.classList.add("remove-book-button");
+        removeBookButton.textContent="Remove From Library";
+
+        //Link the data attribute of the remove button to the array and card
+        removeBookButton.dataset.linkedArray = index;
+        card.appendChild(removeBookButton)
+
+        //Start event listener/ remove array item from array and card from parent div via data link
+        removeBookButton.addEventListener("click", removeBookFromLibrary);
+
+        function removeBookFromLibrary() {
+            let retrieveBookToRemove = removeBookButton.dataset.linkedArray;
+            myLibrary.splice(parseInt(retrieveBookToRemove), 1);
+            card.remove();
+            displayBooksOnPage();
+        }
+
+
+        for (let key in myLibrarys) {
             const para = document.createElement("p");
-            para.textContent = ( `${key}: ${myLibrary[key]}`);
+            para.textContent = ( `${key}: ${myLibrarys[key]}`);
             card.appendChild(para);
         }
-    })
+
+        index++
+    });
 }
+
+
 // Start event listener/display form to add a new book to library
 const addBookButton = document.querySelector(".add-book-button");
 addBookButton.addEventListener("click", displayTheForm);
@@ -68,14 +97,9 @@ function intakeFormData() {
 
     // Call function to input the book data to array
     addBooktoLibrary(Title, Author, Pages, Read);
-
+    
     // Reset form after successful submission
-    document.getElementById("add-book").reset();
+    document.getElementById('add-book').reset();
 
 }   
 
-
-//addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
-//addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
-//addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", "295 Pages", "Not Read yet");
-//addBooktoLibrary("The Seven Habits of Highly Effective People", "Steven Covey", "200 pages", "Read");
