@@ -50,7 +50,7 @@ h1 {
     gap: 15px;
 }
 
-.submit-button, .reset-button {
+.submit-button {
     border-radius: 10px;
     padding 5px;
     box-shadow: 5px 5px 5px black;
@@ -76,4 +76,15 @@ input ,select {
     margin: 50px;
     align-items: center;
     justify-content: center;
+}
+
+#resetBtn {
+    grid-column: 2 / 3;
+    width: auto;
+}
+
+.remove-book-button {
+    grid-row: 5/6;
+    font-weight: 500;
+    border-radius: 10px;
 }
